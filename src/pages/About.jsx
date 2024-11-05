@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 // Hero Section for About Page
 const HeroSection = () => {
   return (
-    <section className="relative w-full h-[70vh] bg-gradient-to-r from-teal-500 to-blue-600 text-white flex items-center justify-center">
+    <section className="relative w-full h-[70vh] bg-gradient-to-r from-teal-300 to-teal-600 text-white flex items-center justify-center">
       <div className="text-center">
         <h1 className="text-5xl font-bold mb-4">Welcome to Our Institute</h1>
         <p className="text-xl max-w-lg mx-auto">
@@ -71,7 +71,7 @@ const TeamSection = () => {
 // Call to Action for prospective students
 const CallToAction = () => {
   return (
-    <section className="py-16 bg-gradient-to-r from-teal-500 to-blue-600 text-white text-center">
+    <section className="py-16 bg-gradient-to-r from-teal-300 to-teal-600 text-white text-center">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-4xl font-bold mb-4">Join Us and Kickstart Your IT Career</h2>
         <p className="text-lg mb-8 max-w-2xl mx-auto">

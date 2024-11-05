@@ -17,12 +17,7 @@ export const Navbar = () => {
     const tl = gsap.timeline({ defaults: { duration: 0.5, ease: "power2.out" } });
     const links = document.querySelectorAll(".navbar-link");
     links.forEach((link, index) => {
-      tl.fromTo(
-        link,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1 },
-        `-=${index * 0.1}`
-      );
+      tl.fromTo(link, { y: 20, opacity: 0 }, { y: 0, opacity: 1 }, `-=${index * 0.1}`);
     });
   }, []);
 
@@ -124,8 +119,8 @@ export const Navbar = () => {
               </motion.button>
               <motion.button
                 onClick={() => {
-                  logout(); 
-                  navigate("/"); 
+                  logout();
+                  navigate("/");
                 }}
                 className="flex items-center justify-center bg-gradient-to-r from-teal-800 via-teal-700 to-teal-600 text-white py-2 px-6 rounded-full shadow-lg transition duration-200 text-lg"
               >
@@ -157,8 +152,8 @@ export const Navbar = () => {
             </motion.button>
             <motion.button
               onClick={() => {
-                logout(); 
-                navigate("/"); 
+                logout();
+                navigate("/");
               }}
               className="flex items-center justify-center bg-gradient-to-r from-teal-800 via-teal-700 to-teal-600 text-white py-2 px-6 rounded-full shadow-lg transition duration-200 text-lg"
             >
