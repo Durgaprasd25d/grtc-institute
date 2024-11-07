@@ -8,6 +8,8 @@ import Loader from "../components/Loader";
 import { GoPencil } from "react-icons/go";
 import { gsap } from "gsap";
 import { motion } from "framer-motion";
+import { jwtDecode } from 'jwt-decode';
+
 
 const Exams = () => {
   const navigate = useNavigate();
@@ -16,6 +18,24 @@ const Exams = () => {
   const [exams, setExams] = useState([]);
 
   useEffect(() => {
+    const token = state.token;
+
+    // Check if token is expired
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        if (decoded.exp * 1000 < Date.now()) {
+          // Token expired
+          navigate("/login");
+          return;
+        }
+      } catch (error) {
+        console.error("Failed to decode token", error);
+        navigate("/login");
+        return;
+      }
+    }
+
     if (!state.loading && !state.student) {
       navigate("/login");
     } else if (state.student) {
@@ -35,6 +55,11 @@ const Exams = () => {
           },
         }
       );
+      if (response.status === 401) {
+        // Unauthorized, token might be invalid or expired
+        navigate("/login");
+        return;
+      }
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }

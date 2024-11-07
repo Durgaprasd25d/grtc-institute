@@ -120,3 +120,29 @@ export const courses = [
     category: "business",
   },
 ];
+export const images = [
+  {
+    url: "https://plus.unsplash.com/premium_photo-1673329271082-365e038a1efd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    category: "Nature",
+  },
+  {
+    url: "https://plus.unsplash.com/premium_photo-1710787193365-cbc782344920?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bGFuZCUyMHNjYXBlfGVufDB8fDB8fHww",
+    category: "Architecture",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1637419567748-6789aec01324?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bGFuZCUyMHNjYXBlfGVufDB8fDB8fHww",
+    category: "Portraits",
+  },
+  {
+    url: "https://plus.unsplash.com/premium_photo-1723060544035-bdb6331a4c39?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    category: "Nature",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1723400242616-2969c5ea3272?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fGxhbmQlMjBzY2FwZXxlbnwwfHwwfHx8MA%3D%3D",
+    category: "Architecture",
+  },
+  {
+    url: "https://plus.unsplash.com/premium_photo-1673329273252-62bf98808be9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fGxhbmQlMjBzY2FwZXxlbnwwfHwwfHx8MA%3D%3D",
+    category: "Portraits",
+  },
+];
