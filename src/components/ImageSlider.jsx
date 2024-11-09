@@ -4,20 +4,26 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 
 export const ImageSlider = () => {
-  // Static array of computer-related images
-  const images = [
-    "https://plus.unsplash.com/premium_photo-1673329271082-365e038a1efd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://plus.unsplash.com/premium_photo-1710787193365-cbc782344920?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bGFuZCUyMHNjYXBlfGVufDB8fDB8fHww",
-    "https://images.unsplash.com/photo-1637419567748-6789aec01324?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bGFuZCUyMHNjYXBlfGVufDB8fDB8fHww",
-    "https://plus.unsplash.com/premium_photo-1723060544035-bdb6331a4c39?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1723400242616-2969c5ea3272?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fGxhbmQlMjBzY2FwZXxlbnwwfHwwfHx8MA%3D%3D",
-    "https://plus.unsplash.com/premium_photo-1673329273252-62bf98808be9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fGxhbmQlMjBzY2FwZXxlbnwwfHwwfHx8MA%3D%3D"
-  ];
-
-  // Only one useState for currentIndex
+  const [images, setImages] = useState([]); // Holds the images fetched from the API
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const imageSliderRef = useRef(null);
+
+  // Fetch images from the API (e.g., images with category "banner")
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/get-images?category=banner"); // API URL for fetching images based on category
+        const data = await response.json();
+        if (data && data.images) {
+          setImages(data.images); // Assume the API returns an array of images
+        }
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    fetchImages();
+  }, []); // Empty dependency array to fetch images only on component mount
 
   useEffect(() => {
     if (images.length === 0) return; // Avoid errors if images are not available yet
@@ -56,7 +62,7 @@ export const ImageSlider = () => {
               key={index}
               className="flex-shrink-0 w-full h-80 sm:h-96 md:h-[500px] lg:h-[600px]"
               style={{
-                backgroundImage: `url(${image})`,
+                backgroundImage: `url(${image.url})`, // Assuming the image object contains a 'url' field
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 transition: "transform 0.8s ease-out",
