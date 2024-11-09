@@ -22,7 +22,7 @@ const Gallery = () => {
     const fetchImages = async () => {
       setLoading(true);
       try {
-        const response = await fetch("https://grtcindia.in/grtc-server/api/get-images");
+        const response = await fetch("https://grtc-new-node-backend.onrender.com/api/get-images");
         const data = await response.json();
 
         // Parse category from URL and add to each image object

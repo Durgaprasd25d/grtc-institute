@@ -13,7 +13,7 @@ export const ImageSlider = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch("https://grtcindia.in/grtc-server/api/get-images?category=banner"); // API URL for fetching images based on category
+        const response = await fetch("https://grtc-new-node-backend.onrender.com/api/get-images?category=banner"); // API URL for fetching images based on category
         const data = await response.json();
         if (data && data.images) {
           setImages(data.images); // Assume the API returns an array of images
