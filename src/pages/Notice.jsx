@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { Header } from "../components/Header";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
@@ -88,7 +88,8 @@ const Notice = () => {
                     transition={{ duration: 0.3 }}
                     className="text-teal-500 ml-2"
                   >
-                    {activeIndex === index ? <FaAngleDown /> : <FaAngleUp />}
+                    {/* Show angle up when open, angle down when closed */}
+                    {activeIndex === index ? <FaAngleUp /> : <FaAngleDown />}
                   </motion.span>
                 </div>
               </motion.div>

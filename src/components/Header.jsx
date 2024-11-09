@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { gsap } from "gsap";
-import logo_1 from "../assets/logo_1.png"; // Import your image
+import logo_1 from "../assets/logo_1.png"; // Replace with your first logo
+import logo_2 from "../assets/director/grtc_1.jpg"; // Replace with your second logo
+import logo_3 from "../assets/director/logo3.png"; // Replace with your third logo
 
 export const Header = () => {
   const headerRef = useRef(null);
@@ -33,26 +35,34 @@ export const Header = () => {
       );
   }, []);
 
+  const logos = [logo_1, logo_2, logo_3]; // Array of logos
+
   return (
     <header
       ref={headerRef}
-      className="flex flex-col md:flex-row justify-between items-center p-4 md:p-6 h-auto md:h-24 bg-gradient-to-r from-teal-800 via-teal-700 to-teal-600 text-white shadow-lg font-poppins"
+      className="flex flex-col md:flex-row justify-between items-center p-6 md:p-8 h-auto md:h-24 bg-gradient-to-t from-teal-800 via-teal-600 to-teal-500 text-white shadow-xl rounded-lg font-sans"
     >
       {/* Institute Name */}
-      <div className="text-center md:text-left font-bold text-xl md:text-3xl tracking-wide font-serif">
-        GURUKRUPA RESEARCH AND TRAINING CENTER
+      <div className="flex items-center space-x-3 md:space-x-5 text-center md:text-left font-semibold text-xl md:text-3xl tracking-tight font-serif mb-4 md:mb-0 uppercase">
+        <img
+          src={logo_2}
+          alt="Institute Logo"
+          className="w-16 h-16 md:w-20 md:h-20 rounded-full shadow-md"
+        />
+
+        <span>GURUKRUPA RESEARCH AND TRAINING CENTER</span>
       </div>
 
-      {/* Circular Images */}
-      <div className="flex space-x-4 mt-4 md:mt-0">
-        {[...Array(3)].map((_, index) => (
+      {/* Circular Logos */}
+      <div className="flex space-x-6 md:space-x-10 mt-4 md:mt-0">
+        {logos.map((logo, index) => (
           <div
             key={index}
             ref={(el) => (logoRefs.current[index] = el)}
-            className="w-12 h-12 md:w-16 md:h-16 overflow-hidden rounded-full shadow-md hover:shadow-xl transition-transform transform hover:scale-110"
+            className="w-16 h-16 md:w-20 md:h-20 overflow-hidden rounded-full shadow-lg hover:scale-110 transition-all duration-300 ease-in-out transform hover:shadow-2xl"
           >
             <img
-              src={logo_1}
+              src={logo}
               alt={`Logo ${index + 1}`}
               className="object-cover w-full h-full"
             />
@@ -61,12 +71,12 @@ export const Header = () => {
       </div>
 
       {/* Social Media Icons */}
-      <div className="flex space-x-3 md:space-x-5 text-2xl md:text-3xl mt-4 md:mt-0">
+      <div className="flex space-x-5 md:space-x-7 text-2xl md:text-3xl mt-4 md:mt-0">
         {[FaFacebook, FaInstagram, FaTwitter, FaYoutube].map((Icon, index) => (
           <Icon
             key={index}
             ref={(el) => (socialIconRefs.current[index] = el)}
-            className="hover:text-gray-300 transition duration-300 transform hover:scale-110 cursor-pointer"
+            className="hover:text-gray-400 transition-all duration-300 transform hover:scale-125 cursor-pointer"
           />
         ))}
       </div>
