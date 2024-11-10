@@ -6,10 +6,10 @@ import { Footer } from "../components/Footer";
 import { useStudentContext } from "../context/StudentContext";
 import Loader from "../components/Loader";
 import { GoPencil } from "react-icons/go";
+import { FaCheckCircle } from "react-icons/fa";
 import { gsap } from "gsap";
 import { motion } from "framer-motion";
 import { jwtDecode } from 'jwt-decode';
-
 
 const Exams = () => {
   const navigate = useNavigate();
@@ -20,12 +20,10 @@ const Exams = () => {
   useEffect(() => {
     const token = state.token;
 
-    // Check if token is expired
     if (token) {
       try {
         const decoded = jwtDecode(token);
         if (decoded.exp * 1000 < Date.now()) {
-          // Token expired
           navigate("/login");
           return;
         }
@@ -56,7 +54,6 @@ const Exams = () => {
         }
       );
       if (response.status === 401) {
-        // Unauthorized, token might be invalid or expired
         navigate("/login");
         return;
       }
@@ -81,6 +78,13 @@ const Exams = () => {
       );
     }
   }, [loading]);
+
+  const isExamAttended = (examId) => {
+    if (state.student.completedExams && Array.isArray(state.student.completedExams)) {
+      return state.student.completedExams.some((exam) => exam.exam.toString() === examId);
+    }
+    return false;
+  };
 
   if (loading) return <Loader />;
 
@@ -114,7 +118,6 @@ const Exams = () => {
       <Header />
       <Navbar />
 
-      {/* Student Avatar */}
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -164,7 +167,7 @@ const Exams = () => {
               <tbody>
                 {exams.map((exam) => (
                   <tr
-                    key={exam.id}
+                    key={exam._id}
                     className="exam-list-item border-b hover:bg-gray-100"
                   >
                     <td className="py-3 px-6 text-gray-800">{exam.title}</td>
@@ -172,12 +175,18 @@ const Exams = () => {
                       {exam.description}
                     </td>
                     <td className="py-3 px-6 text-center">
-                      <button
-                        onClick={() => navigate(`/exams/${exam._id}`)}
-                        className="text-teal-600 hover:text-teal-800"
-                      >
-                        <GoPencil size={20} />
-                      </button>
+                      {isExamAttended(exam._id) ? (
+                        <span className="text-gray-500 flex items-center justify-center">
+                          <FaCheckCircle className="mr-1 text-teal-600" /> Already attempted
+                        </span>
+                      ) : (
+                        <button
+                          onClick={() => navigate(`/exams/${exam._id}`)}
+                          className="text-teal-600 hover:text-teal-800"
+                        >
+                          <GoPencil size={20} />
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))}

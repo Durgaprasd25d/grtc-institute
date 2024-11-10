@@ -73,11 +73,13 @@ export const Header = () => {
       {/* Social Media Icons */}
       <div className="flex space-x-5 md:space-x-7 text-2xl md:text-3xl mt-4 md:mt-0">
         {[FaFacebook, FaInstagram, FaTwitter, FaYoutube].map((Icon, index) => (
-          <Icon
+          <div
             key={index}
             ref={(el) => (socialIconRefs.current[index] = el)}
             className="hover:text-gray-400 transition-all duration-300 transform hover:scale-125 cursor-pointer"
-          />
+          >
+            <Icon />
+          </div>
         ))}
       </div>
     </header>

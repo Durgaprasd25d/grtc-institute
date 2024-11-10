@@ -20,7 +20,6 @@ const ExamDetails = () => {
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [examStarted, setExamStarted] = useState(false);
-
   useEffect(() => {
     if (!state.student) {
       navigate("/login");
@@ -89,6 +88,7 @@ const ExamDetails = () => {
 
       // Assuming response contains the result data with attendedQuestions, correctAnswers, etc.
       const resultData = {
+        examName:exam.title,
         attendedQuestions: response.data.attendedQuestions,
         correctAnswers: response.data.correctAnswers,
         totalQuestions: response.data.totalQuestions,
